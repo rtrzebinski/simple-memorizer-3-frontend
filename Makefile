@@ -19,6 +19,7 @@ help: ## Show this help
 
 start: ## run application
 	@curl -I http://127.0.0.1:8000 >/dev/null 2>&1 || (echo "ERROR: Backend is required"; exit 1)
-	@printf "Backend running on http://127.0.0.1:8000"
-	@printf "\n"
+	@printf "\033[1m================================================\033[0m \n"
+	@printf "\033[1m Backend running on http://127.0.0.1:8000 \n"
+	@printf "\033[1m================================================\033[0m \n"
 	@npm start
