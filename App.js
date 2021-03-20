@@ -1,21 +1,42 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+
+    let fetchSubscribedLessonsAsync = async () => {
+        fetch('http://127.0.0.1:8000/api/lessons/subscribed?api_token=admin-example-com-api-token')
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(e => console.log(e))
+    }
+
+    return (
+        <View style={styles.container}>
+
+            <TouchableOpacity
+                onPress={fetchSubscribedLessonsAsync}
+                style={{backgroundColor: 'blue'}}>
+                <Text style={{fontSize: 20, color: '#fff'}}>List subscribed lessons</Text>
+            </TouchableOpacity>
+
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    button: {
+        backgroundColor: "blue",
+        padding: 20,
+        borderRadius: 5,
+    },
+    buttonText: {
+        fontSize: 20,
+        color: '#fff',
+    },
 });
