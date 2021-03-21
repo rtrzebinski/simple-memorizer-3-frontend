@@ -22,5 +22,5 @@ start: ## Ensure backed is running, install dependencies, run application
 	@printf "\033[1m================================================\033[0m \n"
 	@printf "\033[1m Backend running on http://127.0.0.1:8000 \n"
 	@printf "\033[1m================================================\033[0m \n"
-	@npm install
+	@npm ci
 	@npm start
