@@ -4,7 +4,7 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 export default function App() {
 
     let fetchSubscribedLessonsAsync = async () => {
-        fetch('http://127.0.0.1:8000/api/lessons/subscribed?api_token=admin-example-com-api-token')
+        fetch('https://simple-memorizer-api.loca.lt/api/lessons/subscribed?api_token=admin-example-com-api-token')
             .then(response => response.json())
             .then(data => console.log(data))
             .catch(e => console.log(e))

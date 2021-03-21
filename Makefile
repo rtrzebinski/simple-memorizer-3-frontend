@@ -17,10 +17,11 @@ help: ## Show this help
         printf "%s\n" $$help_info; \
     done
 
-start: ## Ensure backed is running, install dependencies, run application
-	@curl -I http://127.0.0.1:8000 >/dev/null 2>&1 || (echo "ERROR: Backend is required"; exit 1)
-	@printf "\033[1m================================================\033[0m \n"
-	@printf "\033[1m Backend running on http://127.0.0.1:8000 \n"
-	@printf "\033[1m================================================\033[0m \n"
-	@npm ci
+start: ## Ensure backed is running, create local tunnel, run application
+	@curl -I http://127.0.0.1:8000 >/dev/null 2>&1 || (echo "ERROR: API must be running on http://127.0.0.1:8000"; exit 1)
+	@node_modules/localtunnel/bin/lt.js --port 8000 --subdomain simple-memorizer-api >/dev/null 2>&1 &
+	@printf "\033[1m===========================================================\033[0m \n"
+	@printf "\033[1m API available on https://simple-memorizer-api.loca.lt \n"
+	@printf "\033[1m Open it once in the browser in case of JSON parsing errors \n"
+	@printf "\033[1m===========================================================\033[0m \n"
 	@npm start
