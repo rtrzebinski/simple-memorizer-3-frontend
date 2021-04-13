@@ -23,6 +23,10 @@ export default function App() {
         console.log(lessons)
     }
 
+    let renderLessons = ({item}) => {
+        return <Text>{item.name}</Text>
+    }
+
     return (
         <View style={styles.container}>
 
@@ -36,7 +40,7 @@ export default function App() {
 
             <FlatList
                 data={lessons}
-                renderItem={({item}) => <Text>{item.name}</Text>}
+                renderItem={renderLessons}
             />
 
         </View>
