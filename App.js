@@ -1,20 +1,26 @@
-import React from 'react';
-import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, TouchableOpacity, FlatList} from 'react-native';
 
 export default function App() {
+
+    const [lessons, setLessons] = useState([]);
 
     let fetchSubscribedLessonsAsync = async () => {
         fetch('https://simple-memorizer-api.loca.lt/api/lessons/subscribed?api_token=admin-example-com-api-token')
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => setLessons(data))
             .catch(e => console.log(e))
+
+        console.log(lessons)
     }
 
     let fetchOwnedLessonsAsync = async () => {
         fetch('https://simple-memorizer-api.loca.lt/api/lessons/owned?api_token=admin-example-com-api-token')
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => setLessons(data))
             .catch(e => console.log(e))
+
+        console.log(lessons)
     }
 
     return (
@@ -28,6 +34,11 @@ export default function App() {
                 <Text style={styles.button}>List owned lessons</Text>
             </TouchableOpacity>
 
+            <FlatList
+                data={lessons}
+                renderItem={({item}) => <Text>{item.name}</Text>}
+            />
+
         </View>
     );
 }
@@ -36,8 +47,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     button: {
         backgroundColor: "blue",
