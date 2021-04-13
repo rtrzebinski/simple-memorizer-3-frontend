@@ -10,13 +10,22 @@ export default function App() {
             .catch(e => console.log(e))
     }
 
+    let fetchOwnedLessonsAsync = async () => {
+        fetch('https://simple-memorizer-api.loca.lt/api/lessons/owned?api_token=admin-example-com-api-token')
+            .then(response => response.json())
+            .then(data => console.log(data))
+            .catch(e => console.log(e))
+    }
+
     return (
         <View style={styles.container}>
 
-            <TouchableOpacity
-                onPress={fetchSubscribedLessonsAsync}
-                style={{backgroundColor: 'blue'}}>
-                <Text style={{fontSize: 20, color: '#fff'}}>List subscribed lessons</Text>
+            <TouchableOpacity onPress={fetchSubscribedLessonsAsync}>
+                <Text style={styles.button}>List subscribed lessons</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity onPress={fetchOwnedLessonsAsync}>
+                <Text style={styles.button}>List owned lessons</Text>
             </TouchableOpacity>
 
         </View>
@@ -34,6 +43,8 @@ const styles = StyleSheet.create({
         backgroundColor: "blue",
         padding: 20,
         borderRadius: 5,
+        fontSize: 20,
+        color: '#fff'
     },
     buttonText: {
         fontSize: 20,
