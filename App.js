@@ -23,6 +23,7 @@ export default function App() {
         console.log(lessons)
     }
 
+    // todo render as a div with buttons
     let renderLessons = ({item}) => {
         return <Text>{item.name}</Text>
     }
